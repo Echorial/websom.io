@@ -1,0 +1,129 @@
+info {
+	"name": "page-docs-getting-started",
+	"type": "page",
+	"route": "getting-started",
+	"nested": "/docs",
+	"title": "Getting Started",
+	"tagline": "Learn how to get a Websom development site up and running.",
+	"keywords": "Getting Started, Websom Setup, Initilization, Init"
+}
+
+template {
+	<doc-page>
+		<h1>Getting Started with Websom</h1>
+		<p>
+			Getting websom up and running is super easy and straight forward. All you need is <a target="_blank" href="https://nodejs.org">node</a>, and 10 minutes of time.
+		</p>
+		<h2>Installation</h2>
+		<p>
+			Run the following command to install websom along with its CLI tools globally.
+
+			<doc-code language="bash">
+$ npm i websom -g
+			</doc-code>
+		</p>
+		<h2>Initializing a new project</h2>
+		<section>
+			<p>
+				<span class="bullet">1.</span> Create a fresh directoy to contain your website.
+			</p>
+			<doc-code language="bash">
+$ mkdir my-site
+$ cd my-site
+			</doc-code>
+			<p>
+				A bare bones Websom setup requires a small directory structure along with a couple of configuration files. Of course, you can create these manually, but it's best to let the CLI do the work.
+			</p>
+		</section>
+		<section>
+			<p>
+				<span class="bullet">2.</span> Use the command below to generate the file structure.
+			</p>
+			<p class="tip">We could run the <span class="code">websom</span> command directly, however, you usally need to restart your command line for the newly installed binary to become available. Instead we're just calling npx.</p>
+
+			<doc-code language="bash">
+$ npx websom init
+			</doc-code>
+		</section>
+		<section>
+			<p>
+				<span class="bullet">3.</span> Finally, we need to run <span class="code">npm install</span> and grab the websom dependencies.
+			</p>
+
+			<doc-code language="bash">
+$ npm install
+			</doc-code>
+		</section>
+
+		<h2>Understanding the dev server.</h2>
+
+		<p>When running <span class="code">init</span>, Websom generated a file named <span class="code">devServer.js</span>. Let's quickly break this file down before we go any further.</p>
+
+		<doc-code>
+const { Server } = require("websom"); // Pull the Server class out of the websom package
+
+let server = new Server({
+	dev: true,
+	// By setting dev to true we enable a lot of handy development features.
+	
+	base: __dirname,
+	// Root directory.
+	// This base is used to resolve all of the configuration files below.
+	
+	config: "./config",
+	// A directory containing all of our configuration files.
+	// We'll get into this later.
+
+	dist: "./dist",
+	// The directory in which all the client builds are stored.
+	
+	assets: "./website",
+	// The bulk of our website logic, styling and more.
+	// We'll get into this later.
+	
+	buckets: "./buckets",
+	// A directory to store buckets of files,
+	// such as media, uploads, and misc server storage.
+	
+	headless: false,
+	// By default both an API and a client server is started.
+	// Headless will disable the client server.
+	
+	openInBrowser: true,
+	// This gets annoying fast. You will probably just want to set it to false.
+	
+	verbose: false
+	// If you're experiencing some problems and want more logging enable this.
+});
+
+// Now that we have a server instance we need to start it.
+
+server.startDevelopmentServer().then(() => {
+	// Server started
+
+	// The default client port is http://localhost:8080
+	// The default API port is http://localhost:8970
+});
+		</doc-code>
+
+		<h2>Starting the dev server</h2>
+		<doc-code language="bash">
+$ npm run dev
+		</doc-code>
+		<p>By default the site should open in a new browser window. The page will look like this:</p>
+		<img class="windowed fat-action" :src="fresh" alt="Default websom 404 page." />
+
+		<next-doc to="installing-themes" text="Installing a custom theme" />
+		
+	</doc-page>
+}
+
+script {
+	import fresh from "../images/fresh-site.png";
+
+	export default {
+		data: () => ({
+			fresh
+		})
+	}
+}

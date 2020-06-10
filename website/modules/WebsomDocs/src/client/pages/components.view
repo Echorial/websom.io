@@ -1,0 +1,133 @@
+info {
+	"name": "page-docs-components",
+	"route": "components",
+	"nested": "/docs",
+	"type": "page",
+	"keywords": "components, ui, vue"
+}
+
+template {
+	<div class="docs-components">
+		<div class="docs-category" v-for="category in categories" :key="category.name">
+			<h1 class="capitalize grid-pad">{{category.name}} <icon :icon="category.icon || category.name" end /></h1>
+
+			<div class="docs-component-grid">
+				<card class="docs-component card-grid medium" v-for="component in category.components" :href="'/docs/component/' + component.component" :drop-slide-time="0" title-position="content">
+					<template v-slot:image><img :src="component.image" :alt="component.component" /></template>
+					<template v-slot:drop-slide>
+						<h2 class="grid-pad">
+							{{component.name}}
+						</h2>
+					</template>
+				</card>
+			</div>
+		</div>
+	</div>
+}
+
+script {
+	import inputText from "../images/components/input-text.svg";
+	import inputSelect from "../images/components/input-select.svg";
+	import inputCheckbox from "../images/components/input-checkbox.svg";
+	import inputSwitch from "../images/components/input-switch.svg";
+	import inputRange from "../images/components/input-range.svg";
+	import inputDial from "../images/components/input-dial.svg";
+	import inputCycle from "../images/components/input-cycle.svg";
+	import inputDate from "../images/components/input-date.svg";
+	import inputFile from "../images/components/input-file.svg";
+	import inputColor from "../images/components/input-color.svg";
+
+	export default {
+		data: () => ({
+			categories: [
+				{
+					"name": "input",
+					"components": [
+						{
+							"name": "Text",
+							"component": "input-text",
+							"image": inputText
+						},
+						{
+							"name": "Select",
+							"component": "input-select",
+							"image": inputSelect
+						},
+						{
+							"name": "Checkbox",
+							"component": "input-checkbox",
+							"image": inputCheckbox
+						},
+						{
+							"name": "Switch",
+							"component": "input-switch",
+							"image": inputSwitch
+						},
+						{
+							"name": "Range",
+							"component": "input-range",
+							"image": inputRange
+						},
+						{
+							"name": "Dial",
+							"component": "input-dial",
+							"image": inputDial
+						},
+						{
+							"name": "Cycle",
+							"component": "input-cycle",
+							"image": inputCycle
+						},
+						{
+							"name": "Date",
+							"component": "input-date",
+							"image": inputDate
+						},
+						{
+							"name": "File",
+							"component": "input-file",
+							"image": inputFile
+						},
+						{
+							"name": "Color",
+							"component": "input-color",
+							"image": inputColor
+						}
+					]
+				}
+			]
+		})
+	}
+}
+
+style {
+	.docs-component-grid {
+		display: flex;
+		flex-wrap: wrap;
+
+		&:hover .docs-component {
+			//filter: blur(3px);
+		}
+	}
+
+	.docs-component {
+		width: 250px;
+		//margin: var(--base-size) !important;
+		transition: var(--transition);
+
+		&:hover {
+			//filter: blur(0px) !important;
+			//transform: scale(1.1);
+		}
+
+		img {
+			transition: var(--transition);
+			transform: scale(0.75);
+		}
+
+		&:hover img {
+			transform: scale(0.85);
+			filter: drop-shadow(0px 12px 16px rgba(0, 0, 0, 0.3));
+		}
+	}
+}

@@ -1,0 +1,52 @@
+info {
+	"name": "doc-type",
+	"type": "component"
+}
+
+template {
+	<span class="docs-class-type">
+		<router-link :to="'/docs/class/' + linkRoute" v-if="!noRoute">{{route}}</router-link>
+		<span v-else>{{route}}</span>
+	</span>
+}
+
+script {
+	import docsData from "../../../lib/data.js";
+
+	export default {
+		props: {
+			type: {
+				type: String
+			},
+			noRoute: {
+				type: Boolean,
+				default: false
+			}
+		},
+		computed: {
+			route() {
+				let splits = this.type.split(".");
+				if (splits[0] == "Websom")
+					return splits.splice(1).join(".");
+				
+				return this.type;
+			},
+			linkRoute() {
+				let f = /\<([^\>]+)\>/g;
+
+				let matches = this.type.match(f);
+
+				if (matches && matches.length > 0)
+					return matches[0].replace(/[><]/g, "");
+				else
+					return this.type;
+			}
+		}
+	}
+}
+
+style {
+	.docs-class-type {
+		overflow: hidden;
+	}
+}

@@ -1,0 +1,15 @@
+class WebsomDocs extends Websom.Module {
+	override Websom.Status start() {
+		// Server start.
+	}
+
+	override void permissions() {
+		// Register your module permissions here.
+		// See docs here.
+	}
+
+	override void collections() {
+		// Create your collections and APIs here.
+		// See docs here.
+	}
+}

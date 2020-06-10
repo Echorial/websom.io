@@ -1,0 +1,20 @@
+info {
+	"name": "page-docs-home",
+	"type": "page",
+	"route": "",
+	"nested": "/docs",
+	"title": "Websom docs",
+	"tagline": "The Websom docs homepage."
+}
+
+template {
+	<doc-page>
+		<p>
+			These docs aim to provide a comprehensive source for all things websom.
+			With that said, documentation is still a work in progress and many areas are still unfinished.
+			<br>
+			<br>
+			If you have any questions please submit an issue via Github. Thank you.
+		</p>
+	</doc-page>
+}

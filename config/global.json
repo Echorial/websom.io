@@ -1,0 +1,14 @@
+{
+	"adapters": {
+		"database": "loki"
+	},
+	"adapter.database.loki": {
+		"persistence": "database.db"
+	},
+	"theme.theme.app": {
+		"headingFont": "Roboto",
+		"headingWeight": "100",
+		"subHeadingFont": "Roboto",
+		"subHeadingWeight": "300"
+	}
+}

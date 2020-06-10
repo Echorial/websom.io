@@ -1,0 +1,32 @@
+info {
+	"name": "next-doc",
+	"type": "component"
+}
+
+template {
+	<div class="next-doc">
+		<div>
+			<h2>Next Up</h2>
+			<router-link :to="'/docs/' + to">{{text}} <icon icon="right" /></router-link>
+		</div>
+	</div>
+}
+
+script {
+	export default {
+		props: {
+			to: {
+				type: String
+			},
+			text: {
+				type: String
+			}
+		}
+	}
+}
+
+style {
+	.next-doc {
+		border-top: 1px solid rgba(127, 127, 127, 0.5);
+	}
+}

@@ -1,0 +1,41 @@
+info {
+	"name": "page-home",
+	"route": "/",
+	"type": "page",
+	"title": "Websom",
+	"metaDescription": "The official Websom learning hub. Home to the API docs, guides, and news."
+}
+
+template {
+	<scaffold>
+		<main>
+			<img :src="websomLogo" class="hero-logo" alt="Websom Logo" />
+			<h1 style="color: var(--primary); font-size: 6em;">Websom</h1>
+			<h2 class="pad-content">A modern, integrated, full-stack web framework.</h2>
+
+			<g-h style="width: 500px; max-height: 100px;">
+				<g-v m="6" class="center-content"><h2><router-link to="/docs/getting-started">Get Started <icon icon="right" /></router-link></h2></g-v>
+				<g-v m="6" class="center-content"><h2><router-link to="/docs/getting-started">Learn More <icon icon="down" /></router-link></h2></g-v>
+			</g-h>
+		</main>
+	</scaffold>
+}
+
+script {
+	export default {
+		data() {
+			return {
+				websomLogo: ""
+			};
+		},
+		mounted() {
+			this.websomLogo = this.websom.resolveAsset("websom", "logo");
+		}
+	}
+}
+
+style {
+	.hero-logo {
+		max-width: 256px;
+	}
+}

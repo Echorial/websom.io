@@ -1,0 +1,17 @@
+info {
+	"name": "page-docs",
+	"type": "page",
+	"route": "/docs"
+}
+
+template {
+	<scaffold>
+		<websom-docs class="full-page-docs" />
+	</scaffold>
+}
+
+style {
+	.full-page-docs {
+		min-height: 100%;
+	}
+}

@@ -1,0 +1,130 @@
+info {
+	"name": "page-docs-classes",
+	"route": "class/:cls",
+	"nested": "/docs",
+	"type": "page",
+	"keywords": "api, classes, class"
+}
+
+template {
+	<doc-page>
+		<h1 style="position: relative;"><span class="docs-class-type docs-output" style="top: 6px;">{{info.base}}</span> {{info.route}}</h1>
+
+		<a href="#properties">Properties</a>
+		-
+		<a href="#methods">Methods</a>
+		-
+		<a href="#children">Children</a>
+		
+		<h2 id="properties">Properties</h2>
+		<div class="doc-class-member" v-for="prop in info.members.filter((t) => t.type == 'property')" :key="prop.name">
+			<h3 :id="prop.name">
+				<doc-type :type="prop.output" class="docs-output" />
+				{{prop.name}}
+			</h3>
+			<p>
+				{{prop.doc}}
+			</p>
+		</div>
+
+		<h2 id="methods">Methods</h2>
+		<div class="doc-class-member" v-for="method in info.members.filter((t) => t.type == 'method')" :key="method.name">
+			<h3 :id="method.name">
+				<doc-type :type="method.output" class="docs-output" />
+				{{method.name}}
+				<span class="docs-arguments">( <span v-for="(arg, i) in method.arguments"><doc-type :type="arg.type" /> {{arg.name}} <span v-if="i < method.arguments.length - 1">, </span></span>)</span>
+			</h3>
+			<p>
+				{{method.doc}}
+			</p>
+		</div>
+
+		<h2 id="children">Children</h2>
+		<div class="doc-class-member" v-for="child in classChildren" :key="child.route">
+			<h3>
+				<doc-type :type="child.base" no-route class="docs-output" />
+				<router-link :to="'/docs/class/' + child.route">{{child.name}}</router-link>
+			</h3>
+			<p>
+				{{child.doc}}
+			</p>
+		</div>
+	</doc-page>
+}
+
+script {
+	import docsData from "../../../lib/data.js";
+
+	export default {
+		computed: {
+			info() {
+				return docsData.articles.find((a) => a.route == this.$route.params.cls);
+			},
+			classChildren() {
+				if (!this.$route.params.cls)
+					return [];
+
+				let splits = this.$route.params.cls.split(".");
+
+				return docsData.articles.filter((a) => {
+					let s = a.route.split(".");
+
+					if (s.length != splits.length + 1)
+						return false;
+
+					for (let i = 0; i < s.length - 1; i++) {
+						if (s[i] != splits[i])
+							return false;
+					}
+
+					return true;
+				});
+			}
+		},
+		methods: {
+			
+		}
+	}
+}
+
+style {
+	.docs-class-type {
+		color: var(--primary);
+		font-size: .75em;
+	}
+
+	.doc-page {
+		position: relative;
+	}
+
+	body .doc-page .doc-class-member > h2 {
+		margin-top: 12px !important;
+	}
+
+	.doc-class-member {
+		border-bottom: 1px solid var(--background-overlay);
+		position: relative;
+	}
+
+	.docs-arguments {
+		font-size: 0.75em;
+	}
+
+	.docs-output {
+		position: absolute;
+		left: -260px;
+		width: 250px;
+		top: 1em;
+		text-align: right;
+		display: block;
+	}
+
+	.docs-output-column {
+		text-align: right;
+
+		position: absolute;
+		left: -200px;
+		width: 200px;
+		height: 72px;
+	}
+}

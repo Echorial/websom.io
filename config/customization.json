@@ -1,0 +1,72 @@
+{
+	"color": {
+		"default": {
+			"primary": "#648d2f",
+			"secondary": "#8dc640",
+			"tertiary": "#608232",
+			"success": "#81c784",
+			"warning": "#f4511e",
+			"info": "#2196f3",
+			"danger": "#e91e63",
+			"background": {
+				"light": "#fdfdfd"
+			}
+		}
+	},
+	"navigation": {
+		"navbar": {
+			"items": [
+				{
+					"type": "link",
+					"href": "/",
+					"title": "Home",
+					"align": "center",
+					"sizing": "hide-on-medium-and-up"
+				},
+				{
+					"type": "link",
+					"href": "/docs/getting-started",
+					"title": "Getting Started",
+					"align": "center",
+					"sizing": "hide-on-medium-and-up"
+				},
+				{
+					"type": "link",
+					"href": "/",
+					"title": "Home",
+					"align": "left"
+				},
+				{
+					"type": "link",
+					"href": "/docs/getting-started",
+					"title": "Getting Started",
+					"align": "left"
+				},
+				{
+					"type": "link",
+					"href": "/docs",
+					"title": "Guides",
+					"align": "left"
+				},
+				{
+					"type": "link",
+					"href": "/docs/class/Websom.Server",
+					"title": "API",
+					"align": "left"
+				},
+				{
+					"type": "link",
+					"href": "/docs/components",
+					"title": "Components",
+					"align": "left"
+				},
+				{
+					"type": "link",
+					"href": "/",
+					"title": "Github",
+					"align": "right"
+				}
+			]
+		}
+	}
+}

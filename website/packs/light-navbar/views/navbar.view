@@ -1,0 +1,48 @@
+info {
+	"name": "light-narbar",
+	"type": "style"
+}
+
+style {
+	body .navbar {
+		background: var(--background);
+		color: var(--background-contrast);
+
+		.nav-item {
+			transition: var(--transition);
+			background: var(--background);
+			color: var(--background-contrast);
+
+			&.router-link-exact-active {
+				color: var(--primary);
+				background: var(--background);
+			}
+
+			&:hover {
+				background: var(--background);
+				color: var(--primary-dark);
+			}
+		}
+	}
+
+	body .vertical-nav {
+		background: var(--background);
+		color: var(--background-contrast);
+
+		.nav-item {
+			transition: var(--transition);
+			background: var(--background);
+			color: var(--background-contrast);
+
+			&.router-link-exact-active {
+				color: var(--primary);
+				background: var(--background);
+			}
+
+			&:hover {
+				background: var(--background); 
+				color: var(--primary-dark);
+			}
+		}
+	}
+}

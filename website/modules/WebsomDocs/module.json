@@ -1,0 +1,29 @@
+{
+	"name": "WebsomDocs",
+	"id": "websom-docs",
+	"key": "websom-docs",
+	"resources": [
+		{
+			"path": "./src/client/components"
+		},
+		{
+			"path": "./src/client/state"
+		},
+		{
+			"path": "./src/client/script"
+		},
+		{
+			"path": "./src/client/style"
+		},
+		{
+			"path": "./src/client/pages"
+		},
+		{
+			"path": "./src/client/component-descriptions"
+		}
+	],
+	"npm": {},
+	"composer": {},
+	"adapters": {},
+	"config": {}
+}

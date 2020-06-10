@@ -1,0 +1,253 @@
+info {
+	"name": "websom-docs",
+	"type": "component"
+}
+
+template {
+	<g-l class="websom-docs">
+		<modal ref="modal" modal-transparent>
+			<input-text type="search" v-model="search" ref="msearch"/>
+			<transition-group name="list-slide">
+				<div v-for="r in results" :to="r.route" class="docs-search-result list-slide-item" :key="r.route || r.title">
+					<template v-if="r.type == 'guide'">
+						<h2><router-link :to="r.route" @click.native="closeModal">{{r.title}}</router-link></h2>
+						<p>{{r.tagline}}</p>
+					</template>
+					<template v-else>
+						<h2><router-link :to="r.route" @click.native="closeModal">{{r.classRoute}}</router-link></h2>
+						<p>{{r.base}}</p>
+					</template>
+
+					<span class="doc-right-type">
+						{{r.type}}
+					</span>
+				</div>
+			</transition-group>
+		</modal>
+
+		<button v-if="mobile" @click="$refs['mobile-nav'].open()" class="medium floating fab"><icon icon="menu" /></button>
+
+		<slide-out v-if="mobile" ref="mobile-nav">
+			<vertical-nav class="sticky docs-nav">
+				<tabs>
+					<template v-slot:tab>
+						<div>Guides</div>
+						<div>API</div>
+					</template>
+
+					<template v-slot:body>
+						<div class="docs-mode">
+							<nav-item :item="{type: 'link', href: '/docs/', title: 'Home'}" mobile />
+							<nav-item :item="{type: 'link', href: '/docs/getting-started', title: 'Getting Started'}" mobile />
+							<nav-item :item="{type: 'link', href: '/docs/installing-themes', title: 'Installing Themes'}" mobile />
+						</div>
+						<div class="docs-mode">
+							<docs-tree-node :node="tree" parent="" route="Websom" />
+						</div>
+					</template>
+				</tabs>
+
+				<input-text type="search" placeholder="/ Search Docs" class="docs-search" v-model="search" />
+			</vertical-nav>
+		</slide-out>
+
+		<g-h>
+			<g-v purpose="navigation">
+				<vertical-nav class="sticky docs-nav">
+					<tabs>
+						<template v-slot:tab>
+							<div>Guides</div>
+							<div>API</div>
+						</template>
+
+						<template v-slot:body>
+							<div class="docs-mode">
+								<nav-item :item="{type: 'link', href: '/docs/', title: 'Home'}" />
+								<nav-item :item="{type: 'link', href: '/docs/getting-started', title: 'Getting Started'}" />
+								<nav-item :item="{type: 'link', href: '/docs/installing-themes', title: 'Installing Themes'}" />
+							</div>
+							<div class="docs-mode">
+								<docs-tree-node :node="tree" parent="" route="Websom" />
+							</div>
+						</template>
+					</tabs>
+
+					<input-text type="search" placeholder="/ Search Docs" class="docs-search" v-model="search" />
+				</vertical-nav>
+			</g-v>
+			<g-v purpose="full">
+				<router-view />
+			</g-v>
+		</g-h>
+	</g-l>
+}
+
+script {
+	import docsData from "../../../lib/data.js";
+	import Fuse from "../../../node_modules/fuse.js/dist/fuse.min.js";
+
+	export default {
+		data: () => ({
+			search: "",
+			mode: "guides",
+			tree: {},
+			pagesFuse: null,
+			apiFuse: null,
+			timeout: null,
+			results: [],
+			mobile: typeof window !== "undefined" ? window.innerWidth < 901 : 1200
+		}),
+		created() {
+			for (let art of docsData.articles) {
+				let route = art.route.split(".");
+
+				let b = this.tree;
+				for (let r of route) {
+					if (!b[r])
+						b[r] = {};
+					
+					b = b[r];
+				}
+			}
+
+			this.tree = this.tree.Websom;
+
+			let pages = [];
+
+			for (let p of this.websomPackages) {
+				if (p.info.nested == "/docs") {
+					pages.push({
+						type: "Guide",
+						info: p.info,
+						title: p.info.title,
+						tagline: p.info.tagline,
+						route: "/docs/" + p.info.route
+					});
+				}
+			}
+
+			this.pagesFuse = new Fuse(pages, {
+				keys: ["type", "title", "tagline", "route", "info.keywords"]
+			});
+
+			this.apiFuse = new Fuse(docsData.articles, {
+				keys: ["route", "name", "members.name", "base", "members.arguments.name", "members.output"]
+			});
+		},
+		methods: {
+			closeModal() {
+				this.$refs.modal.close();
+			}
+		},
+		watch: {
+			search() {
+				if (this.search != "") {
+					this.$refs.modal.open();
+					this.$refs.msearch.giveFocus();
+
+					clearTimeout(this.timeout);
+
+					this.timeout = setTimeout(() => {
+						if (!this.search)
+							return;
+						
+						let res = this.apiFuse.search(this.search).map(a => ({...a.item, type: "api", classRoute: a.item.route, route: "/docs/class/" + a.item.route}));
+						
+						this.results = res.splice(0, 5);
+					}, 100)
+				}
+			}
+		},
+		computed: {
+			/*results() {
+				
+
+				let pages = [];
+
+				for (let p of this.websomPackages) {
+					if (p.info.nested == "/docs") {
+						if (p.info.keywords) {
+							let is = false;
+							for (let s of this.search.toLowerCase().split(" "))
+								if (p.info.keywords && p.info.keywords.toLowerCase().includes(s))
+									is = true;
+
+							if (is)
+								pages.push({
+									type: "Guide",
+									info: p.info,
+									title: p.info.title,
+									tagline: p.info.tagline,
+									route: "/docs/" + p.info.route
+								});
+						}
+					}
+				}
+
+				return pages;
+			}*/
+		},
+		mounted() {
+			document.addEventListener("keyup", (e) => {
+				if (e.which == 191) {
+					this.$refs.modal.open();
+					this.$refs.msearch.giveFocus();
+				}
+			});
+		}
+	}
+}
+
+style {
+
+	.fab {
+		position: fixed !important;
+		right: 24px;
+		bottom: 24px;
+		z-index: 1000;
+	}
+
+	.docs-search {
+		margin-top: auto;
+	}
+	
+	.docs-search-result {
+		background: var(--background);
+		color: var(--background-contrast);
+		border-radius: 4px;
+		margin-top: var(--base-size);
+		padding: 6px;
+		position: relative;
+
+		& > p, h2 {
+			padding: 0;
+			margin: 0;
+		}
+	}
+
+	.doc-right-type {
+		position: absolute;
+		top: 12px;
+		right: 0px;
+		color: var(--background-center);
+		transform: rotate(90deg);
+		font-size: 1.5em;
+	}
+
+	.docs-nav {
+		display: flex;
+		flex-direction: column;
+
+		> .input-text {
+			
+		}
+
+		.docs-mode {
+			//overflow: auto;
+		}
+
+		.tabs-body {
+			max-height: calc(100vh - 72px - 84px);
+		}
+	}
+}

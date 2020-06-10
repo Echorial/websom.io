@@ -1,0 +1,49 @@
+info  {
+	"name": "docs-tree-node",
+	"type": "component"
+}
+
+template {
+	<div class="docs-tree-node" :class="{active: parent == ''}">
+		<router-link class="docs-tree-node-item fat-action" :to="'/docs/class/' + route">{{parent}}</router-link>
+		<docs-tree-node v-for="(n, k) in node" :parent="k" :key="route + '.' + k" :node="n" :route="route + '.' + k" />
+	</div>
+}
+
+script {
+	export default {
+		props: {
+			parent: {
+				type: String,
+				default: ""
+			},
+			node: {
+				type: Object
+			},
+			route: {
+				type: String
+			}
+		}
+	}
+}
+
+style {
+	.docs-tree-node-item {
+		display: block;
+		padding: 6px 0px;
+
+		transition: var(--transition);
+
+		&:hover {
+			background: var(--background-overlay);
+		}
+	}
+
+	.docs-tree-node {
+		margin-left: 12px;
+	}
+
+	.docs-tree-node:not(.active) > .docs-tree-node {
+		display: none;
+	}
+}

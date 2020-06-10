@@ -1,0 +1,17 @@
+{
+	"name": "websom-docs",
+	"version": "1.0.0",
+	"description": "",
+	"main": "module.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "",
+	"websom": {
+		"type": "module"
+	},
+	"dependencies": {
+		"fuse.js": "^6.0.0"
+	}
+}

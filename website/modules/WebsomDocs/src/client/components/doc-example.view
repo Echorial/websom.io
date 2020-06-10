@@ -1,0 +1,35 @@
+info {
+	"name": "doc-example",
+	"type": "component"
+}
+
+template {
+	<div class="doc-example" :class="color ? 'dark' : 'light'">
+		<div class="doc-example-header">
+			<div class="right-align-content">
+				<input-switch text="" off-icon="day" on-icon="night" v-model="color" />
+			</div>
+		</div>
+		<slot />
+	</div>
+}
+
+script {
+	export default {
+		data: () => ({
+			color: false
+		}),
+		created() {
+			this.color = this.$store.state.websom.colorScheme == 'dark';
+		}
+	}
+}
+
+style {
+	.doc-example {
+		padding: 12px;
+		background: var(--background-overlay);
+		margin: 24px -64px;
+		border-radius: 6px;
+	}
+}

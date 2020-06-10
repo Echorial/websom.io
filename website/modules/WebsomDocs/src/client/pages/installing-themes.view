@@ -1,0 +1,65 @@
+info {
+	"name": "page-docs-installing-themes",
+	"route": "installing-themes",
+	"nested": "/docs",
+	"type": "page",
+	"title": "Installing Themes",
+	"tagline": "Learn how to install Websom themes through the cli.",
+	"keywords": "Installing Themes, Themes, Installing, Linking, Link"
+}
+
+template {
+	<doc-page>
+		<h1>Installing a custom theme</h1>
+		<p>
+			Themes allow developers to customize the general styling of a site.
+			Themes do not however, change coloring, or structure.
+			By default every install comes with the <span class="code">base-theme</span>, this theme provides the base components like buttons, tabs, and more.
+		</p>
+		<h2>Finding themes</h2>
+		<p>
+			Themes are hosted on npm with tags applied for easier filtering and sorting.
+			Most packages that work with websom are prefixed with <span class="code">websom-</span>.
+			This allows you to search through npm and Github for suitable packages.
+			In addtion, the websom dashboard provides a front end to the npm registry, allowing you to view screen shots and icons.
+			The websom dashboard is the suggested way to search for packages.
+		</p>
+
+		<h2>Shutting down the server</h2>
+
+		<p>
+			Before installing any new themes or modules you should shutdown the server. <span class="code">ctrl + c</span> in a command line.
+		</p>
+
+		<p class="tip">
+			Installing while a server is running won't damage anything, however a server restart is necessary as live theme installs are still in the pipeline.
+		</p>
+
+		<h2>Installing themes hosted on npm</h2>
+
+		<doc-code language="bash">
+$ npx websom install &lt;package-name&gt;
+		</doc-code>
+
+		<p>
+			Here is the command to install the official <span class="code">websom-material-theme</span>.
+		</p>
+
+		<doc-code language="bash">
+$ npx websom install websom-material-theme
+		</doc-code>
+
+		<h2>Linking themes locally</h2>
+
+		<p>
+			Sometimes you need to develop global themes or modules locally, and share them between multiple projects.
+			To remedy this, we added linking via symlinks. Our command is almost identical to the <span class="code">npm link</span> command, and simply creates a symlink in your project <span class="code">themes</span> folder.
+		</p>
+
+		<doc-code language="bash">
+$ npx websom link &lt;path/to/theme&gt;
+		</doc-code>
+
+		<next-doc to="customization" text="Customization" />
+	</doc-page>
+}

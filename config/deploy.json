@@ -1,0 +1,8 @@
+{
+	"deploys": [
+		{
+			"name": "site",
+			"type": "static"
+		}
+	]
+}

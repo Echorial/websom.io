@@ -1,0 +1,114 @@
+info {
+	"name": "doc-page",
+	"type": "component"
+}
+
+template {
+	<div class="doc-page">
+		<slot />
+	</div>
+}
+
+style {
+	.doc-page {
+		height: 100%;
+		width: 70%;
+		margin: auto;
+		max-width: 700px;
+
+		h2 {
+			margin-top: 64px !important;
+		}
+
+		p {
+			line-height: 1.6em;
+		}
+
+		.next-doc {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 18px;
+		}
+
+		code, img.windowed {
+			display: block;
+			margin: 24px -64px;
+			white-space: pre;
+
+			border-radius: 6px;
+
+			border-bottom: 2px solid var(--primary);
+			padding: 0px var(--base-size);
+
+			transition: var(--transition);
+
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+
+			&:hover {
+				box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+			}
+		}
+
+		.bullet {
+			margin-left: -1em;
+			font-size: 24px;
+		}
+
+		section {
+			margin-bottom: 0px;
+		}
+
+		.tip {
+			display: block;
+			margin: 24px -64px;
+
+			padding: var(--base-size);
+
+			background: var(--background-overlay);
+			color: var(--info);
+			border-bottom: 2px solid var(--info-dark);
+
+			border-radius: 4px;
+
+			transition: var(--transition);
+
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+
+			&::before {
+				content: "TIP";
+				font-weight: bold;
+				display: block;
+				margin-bottom: 6px;
+			}
+		}
+
+		img {
+			max-width: calc(100% + 64px * 2);
+			margin: 24px -64px;
+
+			&.windowed {
+				&::before {
+					content: "";
+					padding: 12px;
+					border-top-left-radius: 6px;
+					border-top-right-radius: 6px;
+					background: var(--background-overlay);
+				}
+
+				border-bottom-left-radius: 6px;
+				border-bottom-right-radius: 6px;
+
+				border-radius: 6px;
+
+				padding: 0px;
+			}
+		}
+
+		span.code {
+			background: var(--background-overlay);
+			padding: 1px 4px;
+			border-radius: 2px;
+		}
+	}
+}

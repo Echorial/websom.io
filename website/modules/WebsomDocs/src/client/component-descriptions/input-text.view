@@ -1,0 +1,34 @@
+info {
+	"name": "docs-components-input-text",
+	"type": "component"
+}
+
+template {
+	<div>
+		<p>
+			The input-text component provides a higher lever wrapper for native inputs and textareas.
+		</p>
+
+		<h1>Examples</h1>
+
+		<h2>Customizing the placeholder</h2>
+		<p>You can easily customize the placeholder by using the placeholder attribute (prop)</p>
+
+		<doc-code language="html">
+&lt;input-text placeholder="Custom placeholder" /&gt;
+		</doc-code>
+		<doc-example>
+			<input-text placeholder="Custom placeholder"/>
+		</doc-example>
+
+		<h2>Creating a text-area</h2>
+		<p>By setting type="area" you can tell websom to use the native &lt;text-area&gt; element.</p>
+
+		<doc-code language="html">
+&lt;input-text type="area" placeholder="I'm a text area!" /&gt;
+		</doc-code>
+		<doc-example>
+			<input-text type="area" placeholder="I'm a text area!" />
+		</doc-example>
+	</div>
+}

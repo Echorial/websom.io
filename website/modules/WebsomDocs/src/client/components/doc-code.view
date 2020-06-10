@@ -1,0 +1,27 @@
+info {
+	"name": "doc-code",
+	"type": "component"
+}
+
+template {
+	<code :class="'language-' + language">
+		<slot />
+	</code>
+}
+
+script {
+	import hljs from "../../../lib/highlight.pack.js";
+	import hljsCss from "../../../lib/androidstudio.css";
+
+	export default {
+		props: {
+			language: {
+				type: String,
+				default: "js"
+			}
+		},
+		mounted() {
+			hljs.highlightBlock(this.$el);
+		}
+	}
+}
