@@ -1,0 +1,231 @@
+info {
+	"name": "docs-components-input-select",
+	"type": "component"
+}
+
+template {
+	<div>
+		<p>
+			This component replaces the native <span class="code">&lt;select&gt;</span> element, adding a number of useful features. This input supports v-model, accepting Numbers, and Strings. 
+		</p>
+
+		<hr>
+
+		<h1>Examples</h1>
+
+		<h2>Simple Single Option Select</h2>
+		<p>You can pass an array of strings directly into the <span class="code">:options</span> prop. Websom will take these as the value and display name for each option.</p>
+
+		<doc-code language="html">
+&lt;input-select :options="['Option 1', 'Option 2', 'Option 3']" /&gt;
+		</doc-code>
+		<doc-example>
+			<input-select :options="['Option 1', 'Option 2', 'Option 3']"/>
+		</doc-example>
+
+		<h2>Using different values and display names.</h2>
+		<p>Often times your values need to be in a non human readable format.</p>
+
+		<doc-code language="html">
+&lt;input-select :options="myOptions" /&gt;
+		</doc-code>
+		<doc-code language="js">
+export default {
+	data: () => ({
+		myOptions: [
+			{
+				name: "Red",
+				value: "#FF0000"
+			},
+			{
+				name: "Green",
+				value: "#00FF00"
+			},
+			{
+				name: "Blue",
+				value: "#0000FF"
+			}
+		]
+	})
+}
+		</doc-code>
+		<doc-example>
+			<input-select v-model="optValue" :options="myOptions" />
+			<br>
+			Value: {{optValue}}
+		</doc-example>
+
+		<h2>Multi-select.</h2>
+		<p>By adding the <span class="code">multiple</span> prop you can enable multi-select mode. The new value output will be an object of selected values.</p>
+
+		<doc-code language="html">
+&lt;input-select :options="['A', 'B', 'C']" :value="{ B: true }" multiple /&gt;
+		</doc-code>
+		<doc-example>
+			<input-select v-model="mValue" :options="['A', 'B', 'C']" multiple />
+			<br>
+			Value: {{mValue}}
+		</doc-example>
+
+		<h2>Disabling items & Custom classes</h2>
+
+		<doc-code language="html">
+&lt;input-select :options="myOptions" /&gt;
+		</doc-code>
+		<doc-code language="js">
+export default {
+	data: () => ({
+		myOptions: [
+			{
+				name: "Primary",
+				class: "primary"
+			},
+			{
+				name: "Secondary",
+				class: "secondary"
+			},
+			{
+				name: "Tertiary",
+				class: "tertiary"
+			},
+			{
+				name: "Success",
+				class: "success"
+			},
+			{
+				name: "Danger",
+				class: "danger"
+			},
+			{
+				name: "Info",
+				class: "info"
+			},
+			{
+				name: "Warning",
+				class: "warning"
+			},
+			{
+				name: "Disabled",
+				disabled: true
+			}
+		]
+	})
+}
+		</doc-code>
+		<doc-example>
+			<input-select :options="myOptionsClass" />
+		</doc-example>
+
+		<h2>Icons & Alignment.</h2>
+
+		<doc-code language="html">
+&lt;input-select :options="myOptions" /&gt;
+		</doc-code>
+		<doc-code language="js">
+export default {
+	data: () => ({
+		myOptions: [
+			{
+				name: "User",
+				icon: "user"
+			},
+			{
+				name: "Star",
+				icon: "star"
+			},
+			{
+				name: "Truck side=right",
+				icon: "truck",
+				side: "right"
+			}
+		]
+	})
+}
+		</doc-code>
+		<doc-example>
+			<input-select :options="myOptionsIcon" />
+		</doc-example>
+
+		<h2>Changing The Dropdown Icon</h2>
+		<p>Since this is a "config" option you can configure this both locally and globally via global.json</p>
+
+		<doc-code language="html">
+&lt;input-select :options="['Option 1', 'Option 2', 'Option 3']" :config="{ dropIcon: 'key' }" /&gt;
+		</doc-code>
+		<doc-example>
+			<input-select :options="['Option 1', 'Option 2', 'Option 3']" :config="{ dropIcon: 'key' }"/>
+		</doc-example>
+	</div>
+}
+
+script {
+	export default {
+		data: () => ({
+			optValue: null,
+			mValue: {B: true},
+			myOptions: [
+				{
+					name: "Red",
+					value: "#FF0000"
+				},
+				{
+					name: "Green",
+					value: "#00FF00"
+				},
+				{
+					name: "Blue",
+					value: "#0000FF"
+				}
+			],
+			myOptionsIcon: [
+				{
+					name: "User",
+					icon: "user"
+				},
+				{
+					name: "Star",
+					icon: "star"
+				},
+				{
+					name: "Truck side=right",
+					icon: "truck",
+					side: "right"
+				}
+			],
+			myOptionsClass: [
+				{
+					name: "Primary",
+					class: "primary"
+				},
+				{
+					name: "Secondary",
+					class: "secondary"
+				},
+				{
+					name: "Tertiary",
+					class: "tertiary"
+				},
+				{
+					name: "Success",
+					class: "success"
+				},
+				{
+					name: "Danger",
+					class: "danger"
+				},
+				{
+					name: "Info",
+					class: "info"
+				},
+				{
+					name: "Warning",
+					class: "warning"
+				},
+				{
+					name: "Disabled",
+					disabled: true
+				}
+			]
+		})
+	}
+}
