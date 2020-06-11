@@ -5,7 +5,7 @@ info  {
 
 template {
 	<div class="docs-tree-node" :class="{active: parent == ''}">
-		<router-link class="docs-tree-node-item fat-action" :to="'/docs/class/' + route">{{parent}}</router-link>
+		<nav-item v-if="parent" :item="{type: 'link', href: '/docs/class/' + route, title: parent}" />
 		<docs-tree-node v-for="(n, k) in node" :parent="k" :key="route + '.' + k" :node="n" :route="route + '.' + k" />
 	</div>
 }
