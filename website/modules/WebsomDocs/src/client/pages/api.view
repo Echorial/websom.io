@@ -1,0 +1,43 @@
+info {
+	"name": "page-docs-api",
+	"type": "page",
+	"route": "api",
+	"nested": "/docs",
+	"title": "API - Websom",
+	"tagline": "The Websom client/server API."
+}
+
+template {
+	<div class="docs-components">
+		<div class="docs-component-grid">
+				<card class="docs-component card-grid medium" :href="'/docs/class/Websom.Server'" :drop-slide-time="0" title-position="content">
+					<template v-slot:image><img :src="serverImage" alt="Server" /></template>
+					<template v-slot:drop-slide>
+						<h2 class="grid-pad">
+							Server side
+						</h2>
+					</template>
+				</card>
+
+				<card class="docs-component card-grid medium" :href="'/docs/client'" :drop-slide-time="0" title-position="content">
+					<template v-slot:image><img :src="clientImage" alt="Client" /></template>
+					<template v-slot:drop-slide>
+						<h2 class="grid-pad">
+							Client side
+						</h2>
+					</template>
+				</card>
+			</div>
+	</div>
+}
+
+script {
+	import serverImage from "../images/server.svg";
+	import clientImage from "../images/client.svg";
+
+	export default {
+		data: () => ({
+			serverImage, clientImage
+		})
+	}
+}

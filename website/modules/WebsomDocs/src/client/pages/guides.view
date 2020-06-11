@@ -1,0 +1,66 @@
+info {
+	"name": "page-docs-api",
+	"type": "page",
+	"route": "guides",
+	"nested": "/docs",
+	"title": "Guides - Websom",
+	"tagline": "The Websom Guides Index."
+}
+
+template {
+	<div class="docs-components">
+		<div class="docs-category" v-for="category in categories" :key="category.name">
+			<h1 class="capitalize grid-pad">{{category.name}} <icon :icon="category.icon || category.name" end /></h1>
+
+			<div class="docs-component-grid">
+				<card class="docs-component card-grid free-height medium" v-for="guide in category.guides" :href="'/docs/' + guide.route" title-position="content">
+					<template v-slot:image><img :src="guide.image" :alt="guide.component" /></template>
+					<template v-slot:title>
+						<h2 class="grid-pad">
+							{{guide.name}}
+						</h2>
+					</template>
+				</card>
+			</div>
+		</div>
+	</div>
+}
+
+script {
+	import started from "../images/guides/getting-started.svg";
+	import themes from "../images/guides/installing-themes.svg";
+	import customization from "../images/guides/customization.svg";
+
+	export default {
+		data: () => ({
+			categories: [
+				{
+					name: "First Steps",
+					icon: "sun",
+					guides: [
+						{
+							route: "getting-started",
+							name: "Getting Started",
+							image: started
+						},
+						{
+							route: "installing-themes",
+							name: "Installing Themes",
+							image: themes
+						},
+						{
+							route: "customization",
+							name: "Customization",
+							image: customization
+						}
+					]
+				}
+			]
+		}),
+		methods: {
+			metaDescription() {
+				return `The Websom guides index, containing a list of all the guides currently available.`;
+			}
+		}
+	}
+}

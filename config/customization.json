@@ -44,13 +44,13 @@
 				},
 				{
 					"type": "link",
-					"href": "/docs",
+					"href": "/docs/guides",
 					"title": "Guides",
 					"align": "left"
 				},
 				{
 					"type": "link",
-					"href": "/docs/class/Websom.Server",
+					"href": "/docs/api",
 					"title": "API",
 					"align": "left"
 				},
