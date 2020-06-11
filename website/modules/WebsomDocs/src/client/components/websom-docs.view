@@ -29,50 +29,36 @@ template {
 
 		<slide-out v-if="mobile" ref="mobile-nav">
 			<vertical-nav class="sticky docs-nav">
-				<tabs>
-					<template v-slot:tab>
-						<div>Guides</div>
-						<div>API</div>
-					</template>
-
-					<template v-slot:body>
-						<div class="docs-mode">
-							<nav-item :item="{type: 'link', href: '/docs/', title: 'Home'}" mobile />
-							<nav-item :item="{type: 'link', href: '/docs/getting-started', title: 'Getting Started'}" mobile />
-							<nav-item :item="{type: 'link', href: '/docs/installing-themes', title: 'Installing Themes'}" mobile />
-						</div>
-						<div class="docs-mode">
-							<docs-tree-node :node="tree" parent="" route="Websom" />
-						</div>
-					</template>
-				</tabs>
-
 				<input-text type="search" placeholder="/ Search Docs" class="docs-search" v-model="search" />
+				<template v-if="rootNav == 'guides'">
+					<nav-item :item="{type: 'link', href: '/docs/', title: 'Home'}" mobile />
+					<nav-item :item="{type: 'link', href: '/docs/getting-started', title: 'Getting Started'}" mobile />
+					<nav-item :item="{type: 'link', href: '/docs/installing-themes', title: 'Installing Themes'}" mobile />
+				</template>
+				<template v-else-if="rootNav == 'api'">
+					<docs-tree-node :node="tree" parent="" route="Websom" />
+				</template>
+				<template v-else-if="rootNav == 'components'">
+					
+				</template>
 			</vertical-nav>
 		</slide-out>
 
 		<g-h>
 			<g-v purpose="navigation">
 				<vertical-nav class="sticky docs-nav">
-					<tabs>
-						<template v-slot:tab>
-							<div>Guides</div>
-							<div>API</div>
-						</template>
-
-						<template v-slot:body>
-							<div class="docs-mode">
-								<nav-item :item="{type: 'link', href: '/docs/', title: 'Home'}" />
-								<nav-item :item="{type: 'link', href: '/docs/getting-started', title: 'Getting Started'}" />
-								<nav-item :item="{type: 'link', href: '/docs/installing-themes', title: 'Installing Themes'}" />
-							</div>
-							<div class="docs-mode">
-								<docs-tree-node :node="tree" parent="" route="Websom" />
-							</div>
-						</template>
-					</tabs>
-
 					<input-text type="search" placeholder="/ Search Docs" class="docs-search" v-model="search" />
+					<template v-if="rootNav == 'guides'">
+						<nav-item :item="{type: 'link', href: '/docs/', title: 'Home'}" />
+						<nav-item :item="{type: 'link', href: '/docs/getting-started', title: 'Getting Started'}" />
+						<nav-item :item="{type: 'link', href: '/docs/installing-themes', title: 'Installing Themes'}" />
+					</template>
+					<template v-else-if="rootNav == 'api'">
+						<docs-tree-node :node="tree" parent="" route="Websom" />
+					</template>
+					<template v-else-if="rootNav == 'components'">
+						
+					</template>
 				</vertical-nav>
 			</g-v>
 			<g-v purpose="full">
@@ -159,6 +145,19 @@ script {
 			}
 		},
 		computed: {
+			rootNav() {
+				if (this.$route.matched && this.$route.matched.length > 1) {
+					let m = this.$route.matched;
+					if (m[1].path == "/docs/guides")
+						return "guides";
+					else if (m[1].path == "/docs/api" || m[1].path == "/docs/class/:cls")
+						return "api";
+					else if (m[1].path == "/docs/components" || m[1].path == "/docs/component/:component")
+						return "components";
+				}
+
+				return "guides";
+			}
 			/*results() {
 				
 
@@ -208,7 +207,8 @@ style {
 	}
 
 	.docs-search {
-		margin-top: auto;
+		min-height: 44px;
+		margin-bottom: var(--base-size);
 	}
 	
 	.docs-search-result {
