@@ -9,6 +9,8 @@ template {
 			The input-text component provides a higher lever wrapper for native inputs and textareas.
 		</p>
 
+		<hr>
+
 		<h1>Examples</h1>
 
 		<h2>Customizing the placeholder</h2>
@@ -30,5 +32,50 @@ template {
 		<doc-example>
 			<input-text type="area" placeholder="I'm a text area!" />
 		</doc-example>
+
+		<h2>Validation</h2>
+		<p>The <span class="code">validate</span> prop provides a simple, easy interface for detecting invalid data within forms and data-views.</p>
+
+		<doc-code language="html">
+&lt;input-text :validate="myValidator" /&gt;
+		</doc-code>
+		<doc-code language="js">
+export default {
+	methods: {
+		myValidator(inp) {
+			if (inp == "ABC")
+				return "That is invalid!";
+		}
+	}
+}
+		</doc-code>
+		<doc-example>
+			<input-text placeholder="The string 'ABC' is invalid." :validate="myValidator" />
+		</doc-example>
+
+		<h2>Validation using server API restrictions.</h2>
+		<p>
+			<span class="code">validate</span> also works with the restriction data sent from the server. If you have an API endpoint with a restriction attached to one of it's fields, you can tell websom to use that restriction when validating.
+		</p>
+		<doc-code language="html">
+&lt;input-text validate="/posts/create.title" /&gt;
+		</doc-code>
+		<p>
+			The above code tells this input to validate for the <span class="code">title</span> field on the <span class="code">/posts/create</span> endpoint.
+		</p>
+		<doc-example>
+			<input-text placeholder="Post Title" />
+		</doc-example>
 	</div>
+}
+
+script {
+	export default {
+		methods: {
+			myValidator(inp) {
+				if (inp == "ABC")
+					return "That is invalid!";
+			}
+		}
+	}
 }
