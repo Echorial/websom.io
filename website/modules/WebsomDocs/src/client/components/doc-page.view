@@ -24,6 +24,11 @@ style {
 			line-height: 1.6em;
 		}
 
+		hr {
+			margin: 64px -64px;
+			border-color: var(--mute);
+		}
+
 		.next-doc {
 			display: flex;
 			align-items: center;
