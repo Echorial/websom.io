@@ -3,7 +3,7 @@ info {
 	"type": "page",
 	"route": "",
 	"nested": "/docs",
-	"title": "Websom docs",
+	"title": "Docs - Websom",
 	"tagline": "The Websom docs homepage."
 }
 
