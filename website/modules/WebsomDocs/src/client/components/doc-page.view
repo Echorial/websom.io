@@ -10,6 +10,14 @@ template {
 }
 
 style {
+	.docs-category {
+		h1, h2, h3 {
+			margin-top: 0px;
+		}
+
+		margin-bottom: calc(var(--base-size) * 3);
+	}
+
 	.doc-page {
 		height: 100%;
 		width: 70%;
