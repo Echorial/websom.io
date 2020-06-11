@@ -20,7 +20,7 @@ template {
 		<div class="doc-class-member" v-for="prop in info.members.filter((t) => t.type == 'property')" :key="prop.name">
 			<h3 :id="prop.name">
 				<doc-type :type="prop.output" class="docs-output" />
-				{{prop.name}}
+				<span class="docs-member-name">{{prop.name}}</span>
 			</h3>
 			<p>
 				{{prop.doc}}
@@ -31,7 +31,7 @@ template {
 		<div class="doc-class-member" v-for="method in info.members.filter((t) => t.type == 'method')" :key="method.name">
 			<h3 :id="method.name">
 				<doc-type :type="method.output" class="docs-output" />
-				{{method.name}}
+				<span class="docs-member-name">{{method.name}}</span>
 				<span class="docs-arguments">( <span v-for="(arg, i) in method.arguments"><doc-type :type="arg.type" /> {{arg.name}} <span v-if="i < method.arguments.length - 1">, </span></span>)</span>
 			</h3>
 			<p>
@@ -82,7 +82,12 @@ script {
 			}
 		},
 		methods: {
-			
+			title() {
+				return `${this.$route.params.cls} - Websom`;
+			},
+			metaDescription() {
+				return `API documentation for the ${this.$route.params.cls} class.`;
+			}
 		}
 	}
 }
@@ -104,10 +109,18 @@ style {
 	.doc-class-member {
 		border-bottom: 1px solid var(--background-overlay);
 		position: relative;
+		font-family: Consolas;
+		> h3 {
+			background: var(--background-overlay);
+		}
+	}
+
+	.docs-member-name {
+		
 	}
 
 	.docs-arguments {
-		font-size: 0.75em;
+		font-size: 0.95em;
 	}
 
 	.docs-output {
