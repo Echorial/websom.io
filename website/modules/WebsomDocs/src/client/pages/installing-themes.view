@@ -3,7 +3,7 @@ info {
 	"route": "installing-themes",
 	"nested": "/docs",
 	"type": "page",
-	"title": "Installing Themes",
+	"title": "Installing Themes - Websom",
 	"tagline": "Learn how to install Websom themes through the cli.",
 	"keywords": "Installing Themes, Themes, Installing, Linking, Link"
 }
