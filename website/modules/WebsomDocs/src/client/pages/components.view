@@ -3,6 +3,7 @@ info {
 	"route": "components",
 	"nested": "/docs",
 	"type": "page",
+	"title": "Components - Websom",
 	"keywords": "components, ui, vue"
 }
 
