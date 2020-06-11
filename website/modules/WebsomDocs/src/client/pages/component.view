@@ -15,30 +15,41 @@ template {
 				</div>
 			</g-v>
 			<g-v m="6" s="12" class="hide-on-small">
-				<div class="docs-component-preview-side transparent-background">
-					
+				<div class="docs-component-preview-side transparent-background center-content">
+					<card class="docs-component-props">
+						<span class="docs-tag">&lt;{{comp}}</span>
+						<div v-for="(prop, p) in pack.vue.props" v-if="p != 'config' && p != 'websomView'" class="docs-prop">
+							<span class="docs-attribute">{{p}}<span class="docs-equals">=</span></span><span class="docs-value">"<input v-model="compProps[p]" type="text" spellcheck="false" :size="compProps[p].length - 1" />"</span>
+						</div>
+						<span class="docs-tag">&gt;</span>
+					</card>
 				</div>
 			</g-v>
 		</g-h>
-
-		<card class="docs-component-props">
-			<span class="docs-tag">&lt;{{comp}}</span>
-			<div v-for="(prop, p) in pack.vue.props" v-if="p != 'config' && p != 'websomView'" class="docs-prop">
-				<span class="docs-attribute">{{p}}<span class="docs-equals">=</span></span><span class="docs-value">"<input v-model="compProps[p]" type="text" spellcheck="false" :size="compProps[p].length - 1" />"</span>
-			</div>
-			<span class="docs-tag">&gt;</span>
-		</card>
 
 		<div class="doc-page">
 			<h1>&lt;{{comp}}&gt;</h1>
 			<component :is="'docs-components-' + comp" />
 			
+			<hr>
+
+			<h1>Props</h1>
+
+			<div v-for="(prop, p) in pack.vue.props" :key="p" v-if="p != 'config' && p != 'websomView'">
+				<h2>{{p}}</h2>
+				<h3 class="doc-prop-def">Default: <span class="docs-value">"{{typeof prop.default === 'function' ? prop.default() : prop.default}}"</span></h3>
+				<h3 class="doc-prop-def">Accepted Types: <span class="docs-attribute" v-for="(t, i) in (Array.isArray(prop.type) ? prop.type : [prop.type])" :key="i">{{t.name}}{{Array.isArray(prop.type) ? (i < prop.type.length - 1 ? ', ' : '') : ''}}</span></h3>
+				<p>{{prop.description}}</p>
+			</div>
+
+			<hr>
+
 			<h1>Config</h1>
 
 			<div v-if="Object.keys(pack.config).length > 0">
 
 			</div>
-			<h2 v-else>This component does not have any config options.</h2>
+			<h3 v-else>This component doesn't have any config options.</h3>
 		</div>
 	</div>
 }
@@ -72,6 +83,14 @@ script {
 						this.$set(this.compProps, p, prop.default);
 				}
 			}
+		},
+		methods: {
+			metaDescription() {
+				return `Documentation and examples for the <${this.comp}> Websom component.`;
+			},
+			title() {
+				return `<${this.comp}> - Websom`;
+			}
 		}
 	}
 }
@@ -80,6 +99,10 @@ style {
 	.docs-component-preview-side {
 		height: 100%;
 		background-attachment: fixed;
+	}
+
+	.doc-prop-def {
+		color: rgb(127, 127, 127);
 	}
 
 	.docs-component-preview {
@@ -123,6 +146,7 @@ style {
 
 	.docs-value {
 		color: #f29766;
+		font-family: Consolas, Lucida Console, Courier New, monospace;
 
 		> input {
 			background: transparent;
@@ -140,12 +164,12 @@ style {
 	}
 
 	.docs-component-props {
-		position: absolute !important;
-		top: 24px;
-		right: 24px;
+		//position: absolute !important;
+		//top: 24px;
+		//right: 24px;
 		margin: 0 !important;
 
-		width: calc(50% - 24px);
+		width: calc(95%);
 
 		font-family: Consolas, Lucida Console, Courier New, monospace;
 	}
