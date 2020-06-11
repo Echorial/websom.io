@@ -1,4 +1,4 @@
-const { Server } = require("../websom/native/javascript/websom");
+const { Server } = require("websom");
 
 let server = new Server({
 	dev: true,
