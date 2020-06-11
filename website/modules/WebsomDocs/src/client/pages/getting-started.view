@@ -3,7 +3,7 @@ info {
 	"type": "page",
 	"route": "getting-started",
 	"nested": "/docs",
-	"title": "Getting Started",
+	"title": "Getting Started - Websom",
 	"tagline": "Learn how to get a Websom development site up and running.",
 	"keywords": "Getting Started, Websom Setup, Initilization, Init"
 }
@@ -39,7 +39,7 @@ $ cd my-site
 			<p>
 				<span class="bullet">2.</span> Use the command below to generate the file structure.
 			</p>
-			<p class="tip">We could run the <span class="code">websom</span> command directly, however, you usally need to restart your command line for the newly installed binary to become available. Instead we're just calling npx.</p>
+			<p class="tip">We could run the <span class="code">websom</span> command directly, however, you usually need to restart your command line for the newly installed binary to become available. Instead we're just calling npx.</p>
 
 			<doc-code language="bash">
 $ npx websom init
