@@ -3,7 +3,7 @@ info {
 	"route": "customization",
 	"nested": "/docs",
 	"type": "page",
-	"title": "Customization",
+	"title": "Customization - Websom",
 	"tagline": "Learn how to customize the color and styling of Websom.",
 	"keywords": "customization, color, styling, coloring, config"
 }
