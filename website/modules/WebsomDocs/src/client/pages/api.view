@@ -4,11 +4,15 @@ info {
 	"route": "api",
 	"nested": "/docs",
 	"title": "API - Websom",
-	"tagline": "The Websom client/server API."
+	"breadcrumb": "API",
+	"tagline": "The Websom client/server API.",
+	"metaDescription": "The hub for client and server Websom APIs. View any of the official classes, client tools, and code examples."
 }
 
 template {
 	<div class="docs-components">
+		<breadcrumbs class="grid-pad" />
+		
 		<div class="docs-component-grid">
 				<card class="docs-component card-grid medium" :href="'/docs/class/Websom.Server'" :drop-slide-time="0" title-position="content">
 					<template v-slot:image><img :src="serverImage" alt="Server" /></template>

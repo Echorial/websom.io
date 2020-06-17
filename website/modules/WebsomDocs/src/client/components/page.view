@@ -1,7 +1,9 @@
 info {
 	"name": "page-docs",
 	"type": "page",
-	"route": "/docs"
+	"route": "/docs",
+	"breadcrumb": "Docs",
+	"title": "Docs - Websom"
 }
 
 template {

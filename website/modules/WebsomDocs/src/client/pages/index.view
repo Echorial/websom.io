@@ -3,12 +3,15 @@ info {
 	"route": "/",
 	"type": "page",
 	"title": "Websom",
+	"breadcrumb": "Home",
 	"metaDescription": "The official Websom learning hub. Home to the API docs, guides, and news."
 }
 
 template {
 	<scaffold>
 		<main>
+			<breadcrumbs linked-data-only />
+		
 			<img :src="websomLogo" class="hero-logo" alt="Websom Logo" />
 			<h1 style="color: var(--primary); font-size: 6em;">Websom</h1>
 			<h2 class="pad-content">A modern, integrated, full-stack web framework.</h2>

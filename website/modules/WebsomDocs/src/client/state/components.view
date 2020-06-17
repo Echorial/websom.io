@@ -1,0 +1,304 @@
+info {
+	"name": "state-components",
+	"type": "state"
+}
+
+script {
+	import inputText from "../images/components/input-text.svg";
+	import inputSelect from "../images/components/input-select.svg";
+	import inputCheckbox from "../images/components/input-checkbox.svg";
+	import inputSwitch from "../images/components/input-switch.svg";
+	import inputRange from "../images/components/input-range.svg";
+	import inputDial from "../images/components/input-dial.svg";
+	import inputCycle from "../images/components/input-cycle.svg";
+	import inputDate from "../images/components/input-date.svg";
+	import inputFile from "../images/components/input-file.svg";
+	import inputColor from "../images/components/input-color.svg";
+	import inputRadio from "../images/components/input-radio.svg";
+	import inputMedia from "../images/components/input-media.svg";
+	import inputEntity from "../images/components/input-entity.svg";
+	import inputTime from "../images/components/input-time.svg";
+
+	import grid from "../images/components/grid.svg";
+	import row from "../images/components/row.svg";
+	import column from "../images/components/column.svg";
+	import area from "../images/components/area.svg";
+
+	import navbar from "../images/components/navbar.svg";
+	import footbar from "../images/components/footbar.svg";
+	import scaffold from "../images/components/scaffold.svg";
+	import navItem from "../images/components/nav-item.svg";
+	import verticalNav from "../images/components/vertical-nav.svg";
+
+	import modal from "../images/components/modal.svg";
+	import slideOut from "../images/components/slide-out.svg";
+
+	import button from "../images/components/button.svg";
+
+	import icon from "../images/components/icon.svg";
+	import badge from "../images/components/badge.svg";
+	import loader from "../images/components/loader.svg";
+
+	import accordion from "../images/components/accordion.svg";
+	import card from "../images/components/card.svg";
+	import lightbox from "../images/components/lightbox.svg";
+	import pagination from "../images/components/pagination.svg";
+	import list from "../images/components/list.svg";
+	import noData from "../images/components/no-data.svg";
+	import popover from "../images/components/popover.svg";
+	import slider from "../images/components/slider.svg";
+	import statusBox from "../images/components/status-box.svg";
+	import tabs from "../images/components/tabs.svg";
+	import timeDisplay from "../images/components/time-display.svg";
+	import toast from "../images/components/toast.svg";
+	import actionBar from "../images/components/action-bar.svg";
+	import breadcrumbs from "../images/components/breadcrumbs.svg";
+	import dropdown from "../images/components/dropdown.svg";
+	
+	export default websom => ({
+		state: {
+			componentCategories: [
+				{
+					"name": "input",
+					"components": [
+						{
+							"name": "Button",
+							"component": "button",
+							"image": button
+						},
+						{
+							"name": "Text",
+							"component": "input-text",
+							"image": inputText
+						},
+						{
+							"name": "Select",
+							"component": "input-select",
+							"image": inputSelect
+						},
+						{
+							"name": "Checkbox",
+							"component": "input-checkbox",
+							"image": inputCheckbox
+						},
+						{
+							"name": "Radio",
+							"component": "input-radio",
+							"image": inputRadio
+						},
+						{
+							"name": "Switch",
+							"component": "input-switch",
+							"image": inputSwitch
+						},
+						{
+							"name": "Range",
+							"component": "input-range",
+							"image": inputRange
+						},
+						{
+							"name": "Dial",
+							"component": "input-dial",
+							"image": inputDial
+						},
+						{
+							"name": "Cycle",
+							"component": "input-cycle",
+							"image": inputCycle
+						},
+						{
+							"name": "Date",
+							"component": "input-date",
+							"image": inputDate
+						},
+						{
+							"name": "Time",
+							"component": "input-time",
+							"image": inputTime
+						},
+						{
+							"name": "File",
+							"component": "input-file",
+							"image": inputFile
+						},
+						{
+							"name": "Color",
+							"component": "input-color",
+							"image": inputColor
+						},
+						{
+							"name": "Entity",
+							"component": "input-entity",
+							"image": inputEntity
+						},
+						{
+							"name": "Media",
+							"component": "input-media",
+							"image": inputMedia
+						}
+					]
+				},
+				{
+					"name": "Navigation",
+					"icon": "apps",
+					"components": [
+						{
+							"name": "Scaffold",
+							"component": "scaffold",
+							"image": scaffold
+						},
+						{
+							"name": "Navbar",
+							"component": "navbar",
+							"image": navbar
+						},
+						{
+							"name": "Footbar",
+							"component": "footbar",
+							"image": footbar
+						},
+						{
+							"name": "Nav Item",
+							"component": "nav-item",
+							"image": navItem
+						},
+						{
+							"name": "Vertical Nav",
+							"component": "vertical-nav",
+							"image": verticalNav
+						}
+					]
+				},
+				{
+					"name": "Structure",
+					"icon": "view_quilt",
+					"components": [
+						{
+							"name": "Grid Layout",
+							"component": "g-h",
+							"image": grid
+						},
+						{
+							"name": "Grid Row",
+							"component": "g-h",
+							"image": row
+						},
+						{
+							"name": "Grid Column",
+							"component": "g-v",
+							"image": column
+						},
+						{
+							"name": "Grid Area",
+							"component": "g-a",
+							"image": area
+						}
+					]
+				},
+				{
+					"name": "Container",
+					"icon": "inbox",
+					"components": [
+						{
+							"name": "Card",
+							"component": "card",
+							"image": card
+						},
+						{
+							"name": "Action Bar",
+							"component": "action-bar",
+							"image": actionBar
+						},
+						{
+							"name": "Lightbox",
+							"component": "lightbox",
+							"image": lightbox
+						},
+						{
+							"name": "List",
+							"component": "list",
+							"image": list
+						},
+						{
+							"name": "Popover",
+							"component": "popover",
+							"image": popover
+						},
+						{
+							"name": "Tabs",
+							"component": "tabs",
+							"image": tabs
+						},
+						{
+							"name": "Accordion",
+							"component": "accordion",
+							"image": accordion
+						}
+					]
+				},
+				{
+					"name": "Info",
+					"icon": "info",
+					"components": [
+						{
+							"name": "Badge",
+							"component": "badge",
+							"image": badge
+						},
+						{
+							"name": "Icon",
+							"component": "icon",
+							"image": icon
+						},
+						{
+							"name": "Loader",
+							"component": "loader",
+							"image": loader
+						},
+						{
+							"name": "Time Display",
+							"component": "time-display",
+							"image": timeDisplay
+						},
+						{
+							"name": "No Data",
+							"component": "no-data",
+							"image": noData
+						},
+						{
+							"name": "Status Box",
+							"component": "status-box",
+							"image": statusBox
+						},
+						{
+							"name": "Toast",
+							"component": "toaster",
+							"image": toast
+						},
+						{
+							"name": "Pagination",
+							"component": "pagination",
+							"image": pagination
+						}
+					]
+				},
+				{
+					"name": "Modal",
+					"icon": "question_answer",
+					"components": [
+						{
+							"name": "Modal",
+							"component": "modal",
+							"image": modal
+						},
+						{
+							"name": "Slide Out",
+							"component": "slide-out",
+							"image": slideOut
+						}
+					]
+				}
+			]
+		}
+	})
+}

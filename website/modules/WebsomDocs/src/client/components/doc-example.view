@@ -29,7 +29,12 @@ style {
 	.doc-example {
 		padding: 12px;
 		background: var(--background-overlay);
+		color: var(--background-contrast);
 		margin: 24px -64px;
 		border-radius: 6px;
+	}
+
+	.doc-example-header {
+		margin-bottom: var(--base-size);
 	}
 }

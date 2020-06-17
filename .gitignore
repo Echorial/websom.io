@@ -105,3 +105,5 @@ dist
 
 config/optionsCache.json
 website/database.db
+
+dist_deploy/

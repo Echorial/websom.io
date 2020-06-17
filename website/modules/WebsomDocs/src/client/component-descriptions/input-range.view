@@ -1,0 +1,76 @@
+info {
+	"name": "docs-components-input-range",
+	"type": "component"
+}
+
+template {
+	<div>
+		<hr>
+
+		<h1>Examples</h1>
+
+		<h2>Step Size</h2>
+
+		<doc-code language="html">
+&lt;input-range :rounding="10" /&gt;
+		</doc-code>
+		<doc-example>
+			<input-range :rounding="10"/>
+		</doc-example>
+
+		<h2>Range Values</h2>
+
+		<doc-code language="html">
+&lt;input-range :value="[25, 75]" /&gt;
+		</doc-code>
+		<doc-example>
+			<input-range :value="[25, 75]" />
+		</doc-example>
+
+		<h2>Multiple Values</h2>
+
+		<doc-code language="html">
+&lt;input-range :value="[33, 50, 66]" /&gt;
+		</doc-code>
+		<doc-example>
+			<input-range v-model="values" />
+			<br>
+			Values: {{values}}
+		</doc-example>
+
+		<h2>Vertical Slider</h2>
+
+		<doc-code language="html">
+&lt;input-range orientation="vertical" /&gt;
+		</doc-code>
+		<doc-example>
+			<input-range orientation="vertical" />
+		</doc-example>
+
+		<h2>Snapping Points</h2>
+
+		<doc-code language="html">
+&lt;input-range :snaps="[25, 50, 75]" /&gt;
+		</doc-code>
+		<doc-example>
+			<input-range :snaps="[25, 50, 75]" />
+		</doc-example>
+
+		<h2>Custom Display</h2>
+
+		<doc-code language="html">
+&lt;input-range :format="num => '+' + num" /&gt;
+		</doc-code>
+		<doc-example>
+			<input-range :format="num => '+' + num" />
+		</doc-example>
+	</div>
+}
+
+script {
+	export default {
+		data: () => ({
+			values: [33, 50, 66]
+		})
+	}
+}

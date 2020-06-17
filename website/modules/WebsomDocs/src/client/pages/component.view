@@ -8,18 +8,23 @@ info {
 
 template {
 	<div class="docs-page-component">
+		<breadcrumbs class="pad-content" />
+		
 		<g-h class="docs-component-preview">
 			<g-v m="6" s="12">
 				<div class="docs-component-preview-side transparent-background center-content">
-					<div class="docs-component-wrap"><component :is="comp" v-bind="compProps" /></div>
+					<div class="docs-component-wrap center-content pad-content">
+						<component v-if="comp != 'button'" :is="comp" v-bind="compProps" />
+						<button v-else>Button</button>
+					</div>
 				</div>
 			</g-v>
 			<g-v m="6" s="12" class="hide-on-small">
 				<div class="docs-component-preview-side transparent-background center-content">
 					<card class="docs-component-props">
 						<span class="docs-tag">&lt;{{comp}}</span>
-						<div v-for="(prop, p) in pack.vue.props" v-if="p != 'config' && p != 'websomView'" class="docs-prop">
-							<span class="docs-attribute">{{p}}<span class="docs-equals">=</span></span><span class="docs-value">"<input v-model="compProps[p]" type="text" spellcheck="false" :size="compProps[p].length - 1" />"</span>
+						<div v-for="(prop, p) in pack.vue.props" :key="p" v-if="p != 'config' && p != 'websomView'" class="docs-prop">
+							<span class="docs-attribute">{{p}}<span class="docs-equals">=</span></span><span class="docs-value">"<input v-model="compProps[p]" type="text" spellcheck="false" :size="compProps[p] ? (compProps[p].toString()).length - 1 : 10" />"</span>
 						</div>
 						<span class="docs-tag">&gt;</span>
 					</card>
@@ -29,7 +34,7 @@ template {
 
 		<div class="doc-page">
 			<h1>&lt;{{comp}}&gt;</h1>
-			<component :is="'docs-components-' + comp" />
+			<component v-if="docsComponents" :is="'docs-components-' + comp" />
 			
 			<hr>
 
@@ -64,7 +69,10 @@ script {
 				return this.$route.params.component;
 			},
 			pack() {
-				return this.websomPackages.find(p => p.info.name == this.comp);
+				return this.websomPackages.find(p => p.info.name == this.comp) || {config: {}, vue: {props: []}};
+			},
+			docsComponents() {
+				return this.$options.components['docs-components-' + this.comp];
 			}
 		},
 		created() {
@@ -77,7 +85,7 @@ script {
 						continue;
 
 					let prop = view.vue.props[p];
-					if (typeof prop.default === "function")
+					if (typeof prop.default === "function" && prop.type !== Function)
 						this.$set(this.compProps, p, prop.default());
 					else
 						this.$set(this.compProps, p, prop.default);
@@ -90,6 +98,18 @@ script {
 			},
 			title() {
 				return `<${this.comp}> - Websom`;
+			},
+			breadcrumb() {
+				return [
+					{
+						name: "Components",
+						route: "/docs/components"
+					},
+					{
+						name: this.comp,
+						route: "/docs/component/" + this.comp
+					}
+				];
 			}
 		}
 	}
@@ -179,6 +199,10 @@ style {
 		padding: 6px;
 		border-radius: 2px;
 		width: 75%;
+
+		> * {
+			min-width: 200px;
+		}
 	}
 
 	@media @small {

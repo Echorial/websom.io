@@ -1,0 +1,128 @@
+info {
+	"name": "docs-components-input-radio",
+	"type": "component"
+}
+
+template {
+	<div>
+		<hr>
+
+		<h1>Examples</h1>
+
+		<h2>Simple Options</h2>
+
+		<doc-code language="html">
+&lt;input-radio :options="['A', 'B', 'C']" /&gt;
+		</doc-code>
+		<doc-example>
+			<input-radio :options="['A', 'B', 'C']"/>
+		</doc-example>
+
+		<h2>Classes & Disabled Options</h2>
+
+		<doc-code language="html">
+&lt;input-radio :options="myOptions" /&gt;
+		</doc-code>
+		<doc-code language="js">
+export default {
+	data: () => ({
+		myOptions: [
+			{
+				"name": "Option 1",
+				"value": "value-1",
+				"class": "large"
+			},
+			{
+				"name": "Option 2",
+				"value": "value-2",
+				"class": "medium"
+			},
+			{
+				"name": "Option 3",
+				"value": "value-3",
+				"disabled": true
+			}
+		]
+	})
+}
+		</doc-code>
+		<doc-example>
+			<input-radio :options="myOptions2"/>
+		</doc-example>
+
+		<h2>Icons</h2>
+
+		<doc-code language="html">
+&lt;input-radio :options="myOptions" /&gt;
+		</doc-code>
+		<doc-code language="js">
+export default {
+	data: () => ({
+		myOptions: [
+			{
+				"name": "Option 1",
+				"value": "value-1",
+				"icon": "sun"
+			},
+			{
+				"name": "Option 2",
+				"value": "value-2",
+				"icon": "night",
+				"side": "right"
+			},
+			{
+				"name": "Option 3",
+				"value": "value-3",
+				"icon": "truck"
+			}
+		]
+	})
+}
+		</doc-code>
+		<doc-example>
+			<input-radio :options="myOptions"/>
+		</doc-example>
+	</div>
+}
+
+script {
+	export default {
+		data: () => ({
+			myOptions: [
+				{
+					"name": "Option 1",
+					"value": "value-1",
+					"icon": "sun"
+				},
+				{
+					"name": "Option 2",
+					"value": "value-2",
+					"icon": "night",
+					"side": "right"
+				},
+				{
+					"name": "Option 3",
+					"value": "value-3",
+					"icon": "truck"
+				}
+			],
+			myOptions2: [
+				{
+					"name": "Option 1",
+					"value": "value-1",
+					"class": "large"
+				},
+				{
+					"name": "Option 2",
+					"value": "value-2",
+					"class": "medium"
+				},
+				{
+					"name": "Option 3",
+					"value": "value-3",
+					"disabled": true
+				}
+			]
+		})
+	}
+}

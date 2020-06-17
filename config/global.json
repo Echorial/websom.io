@@ -9,6 +9,8 @@
 		"headingFont": "Roboto",
 		"headingWeight": "100",
 		"subHeadingFont": "Roboto",
-		"subHeadingWeight": "300"
+		"subHeadingWeight": "300",
+		"rasterIcon": "icon/icon.png",
+		"vectorIcon": "icon/icon.svg"
 	}
 }

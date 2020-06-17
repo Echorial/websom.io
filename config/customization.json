@@ -46,25 +46,29 @@
 					"type": "link",
 					"href": "/docs/guides",
 					"title": "Guides",
-					"align": "left"
+					"align": "left",
+					"icon": "book"
 				},
 				{
 					"type": "link",
 					"href": "/docs/api",
 					"title": "API",
-					"align": "left"
+					"align": "left",
+					"icon": "code"
 				},
 				{
 					"type": "link",
 					"href": "/docs/components",
 					"title": "Components",
-					"align": "left"
+					"align": "left",
+					"icon": "widgets"
 				},
 				{
 					"type": "link",
-					"href": "/",
+					"href": "https://github.com/Echorial/websom",
 					"title": "Github",
-					"align": "right"
+					"align": "right",
+					"icon": "exit_to_app"
 				}
 			]
 		}

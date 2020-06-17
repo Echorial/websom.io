@@ -3,21 +3,122 @@ info {
 	"route": "customization",
 	"nested": "/docs",
 	"type": "page",
-	"title": "Customization - Websom",
+	"title": "Color - Websom",
+	"breadcrumb": "Coloring the Front-End",
 	"tagline": "Learn how to customize the color and styling of Websom.",
+	"metaDescription": "Learn how to customize the color and styling of Websom. Using the configuration tools we go over the basics of Websom coloring.",
 	"keywords": "customization, color, styling, coloring, config"
 }
 
 template {
 	<doc-page>
-		<h1>Customizing the Webosm front-end</h1>
+		<breadcrumbs />
+		
+		<h1>Coloring the Websom front-end</h1>
 		<p>
-			Websom provides a great amount of customization through its configuration files.
-			These configuration files are stored under the <span class="code">/config</span> directory.
+			Websom has a number of powerful customization features that seamlessly mesh with themes, modules, and native functionality.
+			In this guide, we'll only be going over color, but in later guides we will discus navigation, and component styling.
 		</p>
 
-		<doc-code language="bash">
-$ npx websom link &lt;path/to/theme&gt;
+		<p>
+			Firstly, you need to locate your <span class="code">customization.json</span> file. You can find it under <span class="code">/config</span>. By default it will contain an empty set of brackets:
+		</p>
+
+		<doc-code language="json">
+{}
 		</doc-code>
+
+		<p>
+			Using this file we can change the default color profile, or create new ones. Every profile has a set of standard colors:
+			<span class="code">Primary, Secondary, Tertiary, Success, Danger, Info, Warning, Background</span>. Each of these colors can be tuned for light and dark color schemes.
+		</p>
+		<p>
+			Websom also generates a few helper colors based on each of the provided colors. These include small lightness adjustments for dark and light tints, contrast colors for overlaid text, and background blends.
+		</p>
+		<doc-code language="less">
+// Example of color usage from CSS.
+.myClass {
+	background: var(--primary);
+	color: var(--primary-contrast);
+
+	.child-icon {
+		color: var(--primary-dark); // 10% darker
+	}
+}
+		</doc-code>
+
+		<p>
+			Let's start by changing the default primary color. Add the following to the <span class="code">customization.json</span> file.
+		</p>
+
+		<doc-code language="json">
+{
+	"color": {
+		"default": {
+			"primary": "pink"
+		}
+	}
+}
+		</doc-code>
+
+		<p class="tip">
+			You can use any CSS compatible color. Including rgb(), rgba(), hsl(), etc.
+		</p>
+
+		<p>
+			We can also override the color for color schemes. This is useful if your color doesn't look good with a dark or light background.
+		</p>
+
+		<doc-code language="json">
+{
+	"color": {
+		"default": {
+			"primary": {
+				"dark": "pink",
+				"light": "purple"
+			}
+		}
+	}
+}
+		</doc-code>
+
+		<p>
+			As I said earlier we can create new profiles for use within CSS.
+		</p>
+
+		<doc-code language="json">
+{
+	"color": {
+		"default": { ... },
+		"my-color-profile": {
+			"primary": "dodgerblue"
+		}
+	}
+}
+		</doc-code>
+
+		<p>
+			That's pretty much it when it comes to coloring. For reference here is this site's color setup:
+		</p>
+
+		<doc-code language="json">
+{
+	"color": {
+		"default": {
+			"primary": "#648d2f",
+			"secondary": "#8dc640",
+			"tertiary": "#608232",
+			"success": "#81c784",
+			"warning": "#f4511e",
+			"info": "#2196f3",
+			"danger": "#e91e63",
+			"background": {
+				"light": "#fdfdfd"
+			}
+		}
+	}
+}
+		</doc-code>
+
 	</doc-page>
 }

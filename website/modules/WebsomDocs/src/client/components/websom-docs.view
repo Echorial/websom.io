@@ -28,38 +28,12 @@ template {
 		<button v-if="mobile" @click="$refs['mobile-nav'].open()" class="medium floating fab"><icon icon="menu" /></button>
 
 		<slide-out v-if="mobile" ref="mobile-nav">
-			<vertical-nav class="sticky docs-nav">
-				<input-text type="search" placeholder="/ Search Docs" class="docs-search" v-model="search" />
-				<template v-if="rootNav == 'guides'">
-					<nav-item :item="{type: 'link', href: '/docs/', title: 'Home'}" mobile />
-					<nav-item :item="{type: 'link', href: '/docs/getting-started', title: 'Getting Started'}" mobile />
-					<nav-item :item="{type: 'link', href: '/docs/installing-themes', title: 'Installing Themes'}" mobile />
-				</template>
-				<template v-else-if="rootNav == 'api'">
-					<docs-tree-node :node="tree" parent="" route="Websom" />
-				</template>
-				<template v-else-if="rootNav == 'components'">
-					
-				</template>
-			</vertical-nav>
+			<doc-nav mobile :root="rootNav" :tree="tree" v-model="search" />
 		</slide-out>
 
 		<g-h>
 			<g-v purpose="navigation">
-				<vertical-nav class="sticky docs-nav">
-					<input-text type="search" placeholder="/ Search Docs" class="docs-search" v-model="search" />
-					<template v-if="rootNav == 'guides'">
-						<nav-item :item="{type: 'link', href: '/docs/', title: 'Home'}" />
-						<nav-item :item="{type: 'link', href: '/docs/getting-started', title: 'Getting Started'}" />
-						<nav-item :item="{type: 'link', href: '/docs/installing-themes', title: 'Installing Themes'}" />
-					</template>
-					<template v-else-if="rootNav == 'api'">
-						<docs-tree-node :node="tree" parent="" route="Websom" />
-					</template>
-					<template v-else-if="rootNav == 'components'">
-						
-					</template>
-				</vertical-nav>
+				<doc-nav :root="rootNav" :tree="tree" v-model="search" />
 			</g-v>
 			<g-v purpose="full">
 				<router-view />
@@ -128,8 +102,10 @@ script {
 		watch: {
 			search() {
 				if (this.search != "") {
+					this.$refs["mobile-nav"].close();
 					this.$refs.modal.open();
 					this.$refs.msearch.giveFocus();
+
 
 					clearTimeout(this.timeout);
 

@@ -5,8 +5,8 @@ info  {
 
 template {
 	<div class="docs-tree-node" :class="{active: parent == ''}">
-		<nav-item v-if="parent" :item="{type: 'link', href: '/docs/class/' + route, title: parent}" />
-		<docs-tree-node v-for="(n, k) in node" :parent="k" :key="route + '.' + k" :node="n" :route="route + '.' + k" />
+		<nav-item :mobile="mobile" v-if="parent" :item="{type: 'link', href: '/docs/class/' + route, title: parent}" />
+		<docs-tree-node :mobile="mobile" v-for="(n, k) in node" :parent="k" :key="route + '.' + k" :node="n" :route="route + '.' + k" />
 	</div>
 }
 
@@ -22,6 +22,10 @@ script {
 			},
 			route: {
 				type: String
+			},
+			mobile: {
+				type: Boolean,
+				default: false
 			}
 		}
 	}

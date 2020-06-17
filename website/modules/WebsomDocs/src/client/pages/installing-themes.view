@@ -4,12 +4,16 @@ info {
 	"nested": "/docs",
 	"type": "page",
 	"title": "Installing Themes - Websom",
+	"breadcrumb": "Installing Themes",
+	"metaDescription": "Learn how to install Websom themes through the cli. In this guide we learn about the Websom CLI tools and how to use them when installing packages.",
 	"tagline": "Learn how to install Websom themes through the cli.",
 	"keywords": "Installing Themes, Themes, Installing, Linking, Link"
 }
 
 template {
 	<doc-page>
+		<breadcrumbs />
+		
 		<h1>Installing a custom theme</h1>
 		<p>
 			Themes allow developers to customize the general styling of a site.

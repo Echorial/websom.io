@@ -4,12 +4,16 @@ info {
 	"route": "getting-started",
 	"nested": "/docs",
 	"title": "Getting Started - Websom",
+	"breadcrumb": "Getting Started",
 	"tagline": "Learn how to get a Websom development site up and running.",
-	"keywords": "Getting Started, Websom Setup, Initilization, Init"
+	"metaDescription": "Learn how to get a Websom development site up and running. In this guide we go over the basics of Websom setup and installation.",
+	"keywords": "Getting Started, Websom Setup, Initialization, Init"
 }
 
 template {
 	<doc-page>
+		<breadcrumbs />
+		
 		<h1>Getting Started with Websom</h1>
 		<p>
 			Getting websom up and running is super easy and straight forward. All you need is <a target="_blank" href="https://nodejs.org">node</a>, and 10 minutes of time.

@@ -1,0 +1,103 @@
+info {
+	"name": "doc-nav",
+	"type": "component"
+}
+
+template {
+	<vertical-nav class="docs-nav" :class="{'nested-headings': root != 'api', 'sticky': !mobile}">
+		<div class="doc-small-nav hide-on-medium-and-up">
+			<router-link to="/docs/guides">
+				<icon icon="book" class="primary" /> Guides
+			</router-link>
+			<router-link to="/docs/api">
+				<icon icon="code" class="info" /> API
+			</router-link>
+			<router-link to="/docs/components">
+				<icon icon="widgets" class="warning" /> Components
+			</router-link>
+		</div>
+
+		<input-text type="search" placeholder="/ Search Docs" class="docs-search" v-model="search" />
+		<template v-if="root == 'guides'">
+			<template v-for="item in items">
+				<nav-item :mobile="mobile" v-if="item[0] != 'Category'" :key="item[0]" :item="{type: 'link', href: item[1], title: item[0]}" />
+				<h2 v-else>{{item[1]}}</h2>
+			</template>
+		</template>
+		<template v-else-if="root == 'api'">
+			<docs-tree-node :node="tree" parent="" route="Websom" :mobile="mobile" />
+		</template>
+		<template v-else-if="root == 'components'">
+			<template v-for="category in categories">
+				<h2>{{category.name}}</h2>
+
+				<nav-item :mobile="mobile" v-for="item in category.components" :key="item.component" :item="{type: 'link', href: '/docs/component/' + item.component, title: item.name}" />
+			</template>
+		</template>
+	</vertical-nav>
+}
+
+script {
+	export default {
+		data: () => ({
+			search: "",
+			items: [
+				["Home", "/docs/"],
+				["Category", "First Steps"],
+				["Getting Started", "/docs/getting-started"],
+				["Installing Themes", "/docs/installing-themes"],
+				["Coloring the Front-End", "/docs/customization"],
+			]
+		}),
+		props: {
+			mobile: {
+				type: Boolean,
+				default: false
+			},
+			root: {
+				type: String,
+				default: ""
+			},
+			value: {
+				type: String
+			},
+			tree: {
+				type: Object
+			}
+		},
+		computed: {
+			categories() { return this.$store.state["state-components"].componentCategories; }
+		},
+		created() {
+			this.search = this.value;
+		},
+		watch: {
+			search() {
+				this.$emit("input", this.search);
+			},
+			value() {
+				this.search = this.value;
+			}
+		}
+	}
+}
+
+style {
+	.doc-small-nav {
+		display: flex;
+		flex-direction: column;
+		font-size: 24px;
+		--icon-size: 24px;
+		padding: var(--base-size);
+
+		a {
+			display: flex;
+			align-items: center;
+		}
+
+		.websom-icon {
+			margin-right: var(--base-size) !important;
+			color: var(--color);
+		}
+	}
+}

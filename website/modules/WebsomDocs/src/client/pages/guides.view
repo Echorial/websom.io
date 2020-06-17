@@ -4,16 +4,19 @@ info {
 	"route": "guides",
 	"nested": "/docs",
 	"title": "Guides - Websom",
+	"breadcrumb": "Guides",
 	"tagline": "The Websom Guides Index."
 }
 
 template {
 	<div class="docs-components">
+		<breadcrumbs class="grid-pad" />
+
 		<div class="docs-category" v-for="category in categories" :key="category.name">
 			<h1 class="capitalize grid-pad">{{category.name}} <icon :icon="category.icon || category.name" end /></h1>
 
 			<div class="docs-component-grid">
-				<card class="docs-component card-grid free-height medium" v-for="guide in category.guides" :href="'/docs/' + guide.route" title-position="content">
+				<card class="docs-component card-grid free-height medium" v-for="guide in category.guides" :key="guide.route" :href="'/docs/' + guide.route" title-position="content">
 					<template v-slot:image><img :src="guide.image" :alt="guide.component" /></template>
 					<template v-slot:title>
 						<h2 class="grid-pad">
@@ -50,7 +53,7 @@ script {
 						},
 						{
 							route: "customization",
-							name: "Customization",
+							name: "Coloring",
 							image: customization
 						}
 					]

@@ -20,7 +20,7 @@ style {
 
 			&:hover {
 				background: var(--background);
-				color: var(--primary-dark);
+				color: var(--primary-light);
 			}
 		}
 	}
@@ -41,7 +41,7 @@ style {
 
 			&:hover {
 				background: var(--background); 
-				color: var(--primary-dark);
+				color: var(--primary-light);
 			}
 		}
 	}

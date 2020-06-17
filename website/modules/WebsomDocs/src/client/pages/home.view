@@ -4,11 +4,15 @@ info {
 	"route": "",
 	"nested": "/docs",
 	"title": "Docs - Websom",
-	"tagline": "The Websom docs homepage."
+	"tagline": "The Websom docs homepage.",
+	"metaDescription": "Welcome to the Websom docs homepage. Here you can find guides, documentation, and components.",
+	"breadcrumb": "Docs"
 }
 
 template {
 	<doc-page>
+		<breadcrumbs />
+		
 		<p>
 			These docs aim to provide a comprehensive source for all things websom.
 			With that said, documentation is still a work in progress and many areas are still unfinished.

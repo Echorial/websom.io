@@ -8,6 +8,8 @@ info {
 
 template {
 	<doc-page>
+		<breadcrumbs />
+		
 		<h1 style="position: relative;"><span class="docs-class-type docs-output" style="top: 6px;">{{info.base}}</span> {{info.route}}</h1>
 
 		<a href="#properties">Properties</a>
@@ -87,6 +89,18 @@ script {
 			},
 			metaDescription() {
 				return `API documentation for the ${this.$route.params.cls} class.`;
+			},
+			breadcrumb() {
+				return [
+					{
+						name: "API",
+						route: "/docs/api"
+					},
+					{
+						name: this.$route.params.cls,
+						route: "/docs/class/" + this.$route.params.cls
+					}
+				];
 			}
 		}
 	}
