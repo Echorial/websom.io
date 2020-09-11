@@ -175,7 +175,7 @@ script {
 					"components": [
 						{
 							"name": "Grid Layout",
-							"component": "g-h",
+							"component": "g-l",
 							"image": grid
 						},
 						{
