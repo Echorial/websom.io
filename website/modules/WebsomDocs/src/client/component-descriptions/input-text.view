@@ -55,7 +55,7 @@ export default {
 
 		<h2>Validation using server API restrictions.</h2>
 		<p>
-			<span class="code">validate</span> also works with the restriction data sent from the server. If you have an API endpoint with a restriction attached to one of it's fields, you can tell websom to use that restriction when validating.
+			<span class="code">validate</span> also works with the restriction data sent from the server. If you have an API endpoint with a restriction attached to one of its fields, you can tell websom to use that restriction when validating.
 		</p>
 		<doc-code language="html">
 &lt;input-text validate="/posts/create.title" /&gt;
